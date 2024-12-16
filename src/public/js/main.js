@@ -15,9 +15,9 @@ async function loadTemplate(path) {
 }
 
 async function loadHeaderFooter() {
-    const headerTemplate = await loadTemplate("../../partials/header.html");
+    const headerTemplate = await loadTemplate("./public/partials/header.html");
     const headerElement = document.querySelector("#main-header");
-    const footerTemplate = await loadTemplate("../partials/footer.html");
+    const footerTemplate = await loadTemplate("./public/partials/footer.html");
     const footerElement = document.querySelector("#main-footer");
   
     renderWithTemplate(headerTemplate, headerElement,null, hamButton);
@@ -26,21 +26,12 @@ async function loadHeaderFooter() {
 
 loadHeaderFooter();
 
-
-
-
 function updateYear() {
   const year = document.querySelector("#year");
   const today = new Date();
   year.innerHTML = `© <span class="highlight">${today.getFullYear()} Pedro Rafael Zelada Soruco Tarija-Bolivia</span>`;
 }
 
-//document.addEventListener('DOMContentLoaded', () => {
-
-// for year
-
-
-// For button
 function hamButton() {
 const hamButton = document.querySelector('#menu');
 const navigation = document.querySelector('#animate');
@@ -50,4 +41,3 @@ hamButton.addEventListener('click', () => {
 	hamButton.classList.toggle('open');
 });
 }
-//});

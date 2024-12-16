@@ -1,0 +1,188 @@
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F5F5DC;
+    margin: 0;
+    padding: 0;
+}
+
+/* footer and header*/
+header, footer {
+    background-color: #3C8C5E; 
+    color: #fff;
+    text-align: center;
+    margin: auto;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-weight: normal;
+    margin: -5px;
+}
+
+#titledescription {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -30px;
+}
+
+header img {
+    margin-left: 0px;
+    margin-right: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+nav  {
+    display: grid;
+    grid-template-rows: 0fr; 
+    transition: grid-template-rows 0.5s ease-out; 
+}
+
+nav ul {
+    overflow: hidden;
+    list-style-type: none;
+}
+
+nav.open {
+	grid-template-rows: 1fr;
+}
+
+nav a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    text-decoration: none;
+    
+}
+
+nav a:hover {
+    text-decoration: underline; 
+}
+
+.active {
+    color: #F39C12;
+}
+
+#menu {
+	font-size: 2rem;
+	border: 0;
+	background: none;
+	color: #fff;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+#menu::before {
+	content: "☰";
+}
+
+#menu.open::before {
+	content: "X";
+}
+
+footer {
+    margin-top: 20px;
+    padding: 15px;
+}
+
+footer p {
+    margin: 5px;
+    color: #fff;
+}
+
+/*others*/
+#main-content {
+    margin-top: 20px;  
+    align-items: center;
+    text-align: center;
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+#main-content img {
+    border-radius: 5px;
+    transition: transform .5s;
+    box-shadow: 5px 5px 10px #29537f;
+}
+
+main img:hover {
+    transform: scale(1.1);
+}
+
+#main-content article {
+    border-radius: 10px;
+    border-color: #29537f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 54rem) {
+
+    main {
+        max-width: 75rem;
+    }
+    header, nav, main, footer {
+        margin:auto;
+    }
+
+    nav ul {
+		display: flex;
+	}
+
+	nav ul li {
+		flex: 1 1 100%;
+	}
+    #menu {
+		display: none; 
+	}
+
+    header , footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    #titledescription {
+        margin-left: 150px;
+    }
+
+    nav {
+        grid-template-rows: 1fr;
+        margin-right: 50px;
+    }
+
+    h1{
+        margin: auto;
+    }
+
+    footer {
+        padding: 45px;
+    }
+
+    /*others*/
+    #main-content {
+        margin: 80px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 20px;
+        animation-duration: 3s;
+        
+      }
+   
+}

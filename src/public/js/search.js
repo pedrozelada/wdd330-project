@@ -5,9 +5,6 @@
 const ANIMALS_API_KEY = "w8BZG2Oibpa4V+7lqaADug==aReAFaiWo9O47mYa";
 const IMAGES_API_KEY = "5HFbwzlZZmVOroLoa1MBG58UEbYrUUqx3Mx11cm9ponhhQkV9fbT4CSK";
 
-
-
-// DOM Elements
 const searchBtn = document.getElementById("search-btn");
 const animalInput = document.getElementById("animal-input");
 const resultsSection = document.getElementById("results-section");
@@ -43,25 +40,20 @@ async function fetchAnimalImages(name) {
   }
 }
 
-// Render results
+
 // Render results with images displayed separately
 function renderResults(animalData, images) {
-  // Clear previous results
   resultsSection.innerHTML = "";
-
-  // If no data, show a message
   if (animalData.length === 0) {
     resultsSection.innerHTML = `<p>No results found. Try a different animal name.</p>`;
     return;
   }
-
-  // Add images at the top (only the first two images from the API response)
   const imageSection = document.createElement("div");
   imageSection.classList.add("image-section");
   imageSection.classList.add("image-section");
 
-  const image1 = images[0]?.src.medium || "https://via.placeholder.com/300";
-  const image2 = images[1]?.src.medium || "https://via.placeholder.com/300";
+  const image1 = images[0]?.src.medium ;
+  const image2 = images[1]?.src.medium ;
 
   imageSection.innerHTML = `
     <div class="image-wrapper">
@@ -70,8 +62,6 @@ function renderResults(animalData, images) {
     </div>
   `;
   resultsSection.appendChild(imageSection);
-
-  // Process each animal result
 
   animalData.forEach((animal) => {
     const card = document.createElement("div");
@@ -91,7 +81,7 @@ function renderResults(animalData, images) {
   });
 }
 
-// Main search function
+
 async function searchAnimal() {
   const animalName = animalInput.value.trim();
 
@@ -100,15 +90,13 @@ async function searchAnimal() {
     return;
   }
 
-  // Fetch data from APIs
   const [animalDetails, animalImages] = await Promise.all([
     fetchAnimalDetails(animalName),
     fetchAnimalImages(animalName),
   ]);
 
-  // Render results
   renderResults(animalDetails, animalImages);
 }
 
-// Event listener for search button
+
 searchBtn.addEventListener("click", searchAnimal);

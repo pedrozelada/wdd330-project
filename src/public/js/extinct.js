@@ -1,11 +1,11 @@
-// API Configuration
+// API link
 const API_URL = "https://extinct-api.herokuapp.com/api/v1/animal/";
-const PAGE_SIZE = 10; // Number of animals per page
+const PAGE_SIZE = 10; 
 
 let currentPage = 1;
-let animals = []; // Store all animals data
+let animals = []; 
 
-// Fetch Animals from API
+// Fetch Animals
 async function fetchAnimals() {
   try {
     const response = await fetch(`${API_URL}804`);
@@ -19,8 +19,8 @@ async function fetchAnimals() {
   }
 }
 
-// Render Animal Cards with Pagination
-function renderAnimals(animals, page) {
+// display Animals Cards
+function displayAnimals(animals, page) {
   const container = document.getElementById("animal-list");
   container.innerHTML = "";
 
@@ -46,11 +46,7 @@ function renderAnimals(animals, page) {
       </button>
     `;
     container.appendChild(card);
-    
-    // Seleccionamos el botón de detalles dentro de la tarjeta
     const detailsBtn = card.querySelector('.details-btn');
-    
-    // Añadir el event listener al botón de detalles
     detailsBtn.addEventListener('click', () => {
         
         displayTopicDetails(animal);
@@ -91,7 +87,7 @@ function renderPaginationControls() {
     const targetPage = parseInt(pageInput.value);
     if (targetPage >= 1 && targetPage <= totalPages) {
       currentPage = targetPage;
-      renderAnimals(animals, currentPage);
+      displayAnimals(animals, currentPage);
     } else {
       alert(`Please enter a page number between 1 and ${totalPages}`);
     }
@@ -114,7 +110,7 @@ function renderPaginationControls() {
   navButtons.appendChild(nextButton);
   navButtons.appendChild(lastButton);
 
-  // Append all to the container
+  // Append  to the container
   paginationContainer.appendChild(pageStatus);
   paginationContainer.appendChild(pageInputContainer);
   paginationContainer.appendChild(navButtons);
@@ -131,7 +127,7 @@ function renderPaginationControls() {
     const totalPages = Math.ceil(animals.length / PAGE_SIZE);
     if (page >= 1 && page <= totalPages) {
       currentPage = page;
-      renderAnimals(animals, currentPage);
+      displayAnimals(animals, currentPage);
     }
   }
 }
@@ -171,7 +167,7 @@ function renderPaginationControls() {
 //   });
 // }
 
-
+//  create modal for animals
 let topicDetails = document.querySelector('#animal-details');
 function displayTopicDetails(animal) {
   topicDetails.innerHTML = '';
@@ -194,11 +190,11 @@ function displayTopicDetails(animal) {
 }
 
 
-// Initialize Application
+
 async function init() {
   animals = await fetchAnimals();
-  renderAnimals(animals, currentPage);
- // setupDetailsModal();
+  displayAnimals(animals, currentPage);
+
 }
 
 init();

@@ -1,8 +1,6 @@
 
-// function to take an optional object and a template and insert the objects as HTML into the DOM
 function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
-  //if there is a callback...call it and pass data
   if (callback) {
     callback(data);
   }

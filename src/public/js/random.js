@@ -1,18 +1,17 @@
 // API link
 const API_URL = "https://extinct-api.herokuapp.com/api/v1/animal/";
 
-const animalContainer = document.getElementById("animal-container");
+const animalContainer = document.getElementById("animalr-container");
 const savedCountElement = document.getElementById("saved-count");
 const savedListElement = document.getElementById("saved-list");
 const showSavedButton = document.getElementById("show-saved");
 
-// Utility function to get saved animals from local storage
+// Functions to save and load animals in local storage
 function getSavedAnimals() {
   const savedAnimals = localStorage.getItem("savedAnimals");
   return savedAnimals ? JSON.parse(savedAnimals) : [];
 }
 
-// Utility function to save an animal to local storage
 function saveAnimalName(name) {
   const savedAnimals = getSavedAnimals();
   if (!savedAnimals.includes(name)) {
@@ -22,16 +21,15 @@ function saveAnimalName(name) {
   }
 }
 
-// Update the saved count display
 function updateSavedCount() {
   const savedAnimals = getSavedAnimals();
   savedCountElement.textContent = `Saved Animals: ${savedAnimals.length}`;
 }
 
-// Display the saved animal names
+// Display animals in local storage
 function showSavedAnimals() {
   const savedAnimals = getSavedAnimals();
-  savedListElement.innerHTML = ""; // Clear the list
+  savedListElement.innerHTML = ""; 
 
   if (savedAnimals.length === 0) {
     savedListElement.innerHTML = "<li>No animals saved yet.</li>";
@@ -47,7 +45,7 @@ function showSavedAnimals() {
 
 // Create the animal card and save its name to local storage
 const createAnimalCard = (animal) => {
-  animalContainer.innerHTML = ""; // Clear the container
+  animalContainer.innerHTML = ""; 
 
   if (!animal) {
     animalContainer.innerHTML = "<p>Error fetching animal data. Try again later.</p>";
@@ -56,10 +54,10 @@ const createAnimalCard = (animal) => {
 
   // Create the HTML structure for the animal card
   const animalCard = `
-    <div class="animal-card">
+    <div class="animalr-card">
       <h3>${animal.commonName} (${animal.binomialName})</h3>
       <img src="${animal.imageSrc || "https://via.placeholder.com/240x160?text=No+Image"}" 
-           alt="${animal.commonName}" class="animal-image" />
+           alt="${animal.commonName}" class="animalr-image" />
       <p><strong>Location:</strong> ${animal.location}</p>
       <p><strong>Last Recorded:</strong> ${animal.lastRecord}</p>
       <p><strong>Description:</strong> ${animal.shortDesc}</p>
@@ -68,8 +66,6 @@ const createAnimalCard = (animal) => {
   `;
 
   animalContainer.innerHTML = animalCard;
-
-  // Save the animal's common name to local storage
   saveAnimalName(animal.commonName);
 };
 
@@ -94,9 +90,8 @@ async function loadRandomAnimal() {
   }
 }
 
-// Event listener for "Show Saved Animals" button
+
 showSavedButton.addEventListener("click", showSavedAnimals);
 
-// Initialize saved animals count and load a random animal
 updateSavedCount();
 loadRandomAnimal();

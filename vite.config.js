@@ -3,9 +3,7 @@ import { resolve } from "path";
 
 export default defineConfig({
   root: "src/",
-  server: {
-    port: 3000,
-  },
+  
   build: {
     outDir: "../dist",
     rollupOptions: {

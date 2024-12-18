@@ -6,13 +6,20 @@
     <title>Extinct Animals</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/main.js" type="module"></script>
+    <script src="/js/search.js" type="module" ></script>
     
   </head>
   <body>
     <header id="main-header"></header>
 
     <main>
-        <h2>Endangered Animals</h2>
+      <section class="search-section">
+        <input type="text" id="animal-input" placeholder="Enter animal name..." />
+        <button id="search-btn">Search</button>
+      </section>
+      <section id="results-section">
+        <!-- Results will be dynamically inserted here -->
+      </section>
     </main>
     <footer id="main-footer"></footer>
 

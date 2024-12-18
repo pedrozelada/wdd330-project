@@ -1,3 +1,0 @@
-### Get
-curl -H "Authorization: 5HFbwzlZZmVOroLoa1MBG58UEbYrUUqx3Mx11cm9ponhhQkV9fbT4CSK" \
-  "https://api.pexels.com/v1/search?query=polar bear&per_page=2"

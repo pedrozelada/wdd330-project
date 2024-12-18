@@ -5,7 +5,7 @@ const PAGE_SIZE = 10; // Number of animals per page
 let currentPage = 1;
 let animals = []; // Store all animals data
 
-// Fetch Animals Data from API
+// Fetch Animals from API
 async function fetchAnimals() {
   try {
     const response = await fetch(`${API_URL}804`);

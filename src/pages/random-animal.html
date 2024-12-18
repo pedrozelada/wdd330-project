@@ -6,13 +6,21 @@
     <title>Extinct Animals</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/main.js" type="module"></script>
+    <script src="/js/random.js" type="module"></script>
+    
     
   </head>
   <body>
     <header id="main-header"></header>
 
     <main>
-        <h2>Animal of the day</h2>
+        <h2>Random Animal</h2>
+        <div id="animal-container"></div>
+        <div id="saved-animals">
+          <p id="saved-count">Saved Animals: 0</p>
+          <button id="show-saved" class="show-saved-btn">Show Saved Animals</button>
+          <ul id="saved-list" class="saved-list"></ul>
+        </div>
     
     </main>
    

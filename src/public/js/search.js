@@ -1,7 +1,10 @@
-
+//console.log(import.meta.env);
 // API Keys
-const ANIMALS_API_KEY = import.meta.env.VITE_ANIMALS_API_KEY;
-const IMAGES_API_KEY = import.meta.env.VITE_IMAGES_API_KEY;
+//const ANIMALS_API_KEY = import.meta.env.VITE_ANIMALS_API_KEY;
+//const IMAGES_API_KEY = import.meta.env.VITE_IMAGES_API_KEY;
+const ANIMALS_API_KEY = "w8BZG2Oibpa4V+7lqaADug==aReAFaiWo9O47mYa";
+const IMAGES_API_KEY = "5HFbwzlZZmVOroLoa1MBG58UEbYrUUqx3Mx11cm9ponhhQkV9fbT4CSK";
+
 
 
 // DOM Elements
@@ -41,6 +44,7 @@ async function fetchAnimalImages(name) {
 }
 
 // Render results
+// Render results with images displayed separately
 function renderResults(animalData, images) {
   // Clear previous results
   resultsSection.innerHTML = "";
@@ -51,24 +55,36 @@ function renderResults(animalData, images) {
     return;
   }
 
+  // Add images at the top (only the first two images from the API response)
+  const imageSection = document.createElement("div");
+  imageSection.classList.add("image-section");
+  imageSection.classList.add("image-section");
+
+  const image1 = images[0]?.src.medium || "https://via.placeholder.com/300";
+  const image2 = images[1]?.src.medium || "https://via.placeholder.com/300";
+
+  imageSection.innerHTML = `
+    <div class="image-wrapper">
+      <img src="${image1}" alt="Animal Image 1" class="animal-image" />
+      <img src="${image2}" alt="Animal Image 2" class="animal-image" />
+    </div>
+  `;
+  resultsSection.appendChild(imageSection);
+
   // Process each animal result
+
   animalData.forEach((animal) => {
     const card = document.createElement("div");
     card.classList.add("result-card");
 
-    const image1 = images[0]?.src.medium || "https://via.placeholder.com/300";
-    const image2 = images[1]?.src.medium || "https://via.placeholder.com/300";
-
     card.innerHTML = `
-      <img src="${image1}" alt="${animal.name}" />
       <h3>${animal.name}</h3>
       <p><strong>Scientific Name:</strong> ${animal.taxonomy.scientific_name || "N/A"}</p>
       <p><strong>Location:</strong> ${animal.locations.join(", ") || "N/A"}</p>
       <p><strong>Diet:</strong> ${animal.characteristics.diet || "N/A"}</p>
       <p><strong>Biggest Threat:</strong> ${animal.characteristics.biggest_threat || "N/A"}</p>
       <p><strong>Lifespan:</strong> ${animal.characteristics.lifespan || "N/A"}</p>
-      <a href="${images[0]?.url}" target="_blank">View Image 1</a> | 
-      <a href="${images[1]?.url}" target="_blank">View Image 2</a>
+      
     `;
 
     resultsSection.appendChild(card);

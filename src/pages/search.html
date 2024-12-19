@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extinct Animals</title>
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/main.js" type="module"></script>
     <script src="/js/search.js" type="module" ></script>
@@ -14,15 +15,16 @@
 
     <main>
       <section class="search-section">
-        <p>Enter the name of an animal to have information about the animal.</p>
+        <p>Enter the name of enter the name of a non-extinct animal to have information about the animal.If the name is very general, the animals that belong to that species will be shown. Afterwards you can do a specific search for an animal to see its images</p>
         <input type="text" id="animal-input" placeholder="Enter animal name..." />
         <button id="search-btn">Search</button>
       </section>
       <section id="results-section">
-        <!-- Results will be dynamically inserted here -->
+        <span id="loader" class="loader" style="display: none;"></span>
       </section>
+    
     </main>
     <footer id="main-footer"></footer>
-
+    
   </body>
 </html>

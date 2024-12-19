@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extinct Animals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/main.js" type="module"></script>
     
@@ -13,16 +15,26 @@
 
     <main>
       <div id="main-content">  
-          <picture class="background-image">
-              <source media="(min-width:1000px)" srcset="/images/image-large.webp" width="500" height="400">
-              <img src="/images/image-small.webp" alt="animal image" width="320" height="480">
-          </picture>
-          <article>
-              <p>
-                On this site you can find information about extinct animals, or those in danger of extinction. You can also search by name, and find the animal you are looking for. You can also learn facts about a random animal every day. I hope you enjoy it
-              </p>
-          </article>
-      </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <picture class="background-image">
+                        <source media="(min-width:1000px)" srcset="/images/image-large.webp" width="500" height="400">
+                        <img src="/images/image-small.webp" alt="animal image" width="300" height="400">
+                    </picture>
+                </div>
+                <div class="flip-card-back">
+                    <h2>The Dodo</h2>
+                    <p>The Dodo was a flightless bird that lived on the island of Mauritius in the Indian Ocean. It became extinct in the late 17th century due to human activities such as hunting and the introduction of invasive species. The Dodo is often used as a symbol of extinct species.</p>
+                </div>
+            </div>
+        </div>
+        <article>
+            <p>
+                On this site you can find information about extinct animals, or those in danger of extinction. You can also search by name, and find the animal you are looking for. You can also learn facts about a random animal. I hope you enjoy it!
+            </p>
+        </article>
+    </div>
      
   </main>
     <footer id="main-footer"></footer>

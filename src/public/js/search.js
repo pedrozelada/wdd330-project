@@ -8,9 +8,19 @@ const IMAGES_API_KEY = "5HFbwzlZZmVOroLoa1MBG58UEbYrUUqx3Mx11cm9ponhhQkV9fbT4CSK
 const searchBtn = document.getElementById("search-btn");
 const animalInput = document.getElementById("animal-input");
 const resultsSection = document.getElementById("results-section");
+const loader = document.getElementById("loader");
+
+function showLoader() {
+  loader.style.display = "inline-block";
+}
+
+function hideLoader() {
+  loader.style.display = "none";
+}
 
 // Fetch animal details
 async function fetchAnimalDetails(name) {
+  console.log("Fetching detais",);
   const url = `https://api.api-ninjas.com/v1/animals?name=${name}`;
   const headers = { "X-Api-Key": ANIMALS_API_KEY };
 
@@ -49,17 +59,16 @@ function renderResults(animalData, images) {
     return;
   }
   const imageSection = document.createElement("div");
+  const dataSection = document.createElement("div");
   imageSection.classList.add("image-section");
-  imageSection.classList.add("image-section");
+  dataSection.classList.add("data-section");
 
   const image1 = images[0]?.src.medium ;
   const image2 = images[1]?.src.medium ;
 
   imageSection.innerHTML = `
-    <div class="image-wrapper">
       <img src="${image1}" alt="Animal Image 1" class="animal-image" />
       <img src="${image2}" alt="Animal Image 2" class="animal-image" />
-    </div>
   `;
   resultsSection.appendChild(imageSection);
 
@@ -77,18 +86,21 @@ function renderResults(animalData, images) {
       
     `;
 
-    resultsSection.appendChild(card);
+    dataSection.appendChild(card);
   });
+  resultsSection.appendChild(dataSection)
 }
 
 
 async function searchAnimal() {
   const animalName = animalInput.value.trim();
+  console.log("searching")
 
   if (!animalName) {
     alert("Please enter an animal name.");
     return;
   }
+    showLoader();
 
   const [animalDetails, animalImages] = await Promise.all([
     fetchAnimalDetails(animalName),
@@ -96,6 +108,7 @@ async function searchAnimal() {
   ]);
 
   renderResults(animalDetails, animalImages);
+  hideLoader();
 }
 
 

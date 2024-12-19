@@ -2,10 +2,12 @@
 
 body {
     font-family: 'Open Sans', sans-serif;
+    position: relative;
     background-color: #F5F5DC;
     margin: 0;
     padding: 0;
 }
+
 
 /* footer and header*/
 header, footer {
@@ -13,6 +15,12 @@ header, footer {
     color: #fff;
     text-align: center;
     margin: auto;
+}
+
+header{
+position: sticky;
+    top: 0; 
+    z-index: 1000; 
 }
 
 h1 {
@@ -40,11 +48,16 @@ nav  {
     display: grid;
     grid-template-rows: 0fr; 
     transition: grid-template-rows 0.5s ease-out; 
+    
 }
 
 nav ul {
     overflow: hidden;
-    list-style-type: none;
+    padding: 0;              
+    margin: 0;               
+    list-style-type: none;    
+    justify-content: center; 
+    align-items: center;    
 }
 
 nav.open {
@@ -52,7 +65,7 @@ nav.open {
 }
 
 nav a {
-    display: block;
+   display: block;
     color: #fff;
     text-align: center;
     padding: 1rem;
@@ -99,18 +112,19 @@ h2 {
   text-align: center;
 }
 /*others*/
+
+
 #main-content {
-    margin-top: 20px;  
-    align-items: center;
-    text-align: center;
-    animation-duration: 3s;
-    animation-name: slidein;
+  margin-top: 20px;  
+  display: grid;
+  text-align: center;
+  align-items: center;
+  place-items: center;
 }
 
 #main-content img {
     border-radius: 5px;
-    transition: transform .5s;
-    box-shadow: 5px 5px 10px #29537f;
+    box-shadow: 5px 5px 10px #10db61;
 }
 
 main img:hover {
@@ -126,12 +140,70 @@ main img:hover {
 
 }
 
+/* styles flip */
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 400px;
+  perspective: 1000px; 
+  margin: 0;
+}
+
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg); 
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb; 
+  color: black;
+}
+
+.flip-card-back {
+  background-color: rgb(70, 14, 14); 
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card-back h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.flip-card-back p {
+  font-size: 1em;
+  text-align: center;
+}
+
+
 /* Animal Container */
 .animal-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 65px;
 }
 
 .animal-card {
@@ -188,6 +260,7 @@ dialog {
   box-shadow: 0 0 3rem #777;
   width: 90%;
   max-width: 600px;
+
 }
 
 
@@ -195,6 +268,8 @@ dialog img {
   height: 200px;
   max-width: 100%;
   object-fit: cover;
+  display: block; 
+  margin: 0 auto; 
 }
 
 
@@ -215,7 +290,7 @@ dialog h2 {
   border-radius: 8px;
   margin-top: 0;
   padding: 10px;
-  background-color: #F39C12;
+  background-color: #37f312;
 }
 
 .page-status {
@@ -261,6 +336,8 @@ dialog h2 {
   .page-nav-btn:hover {
     background-color: #ddd;
   }
+
+  
   
 
 
@@ -282,7 +359,7 @@ dialog h2 {
 #search-btn {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #04ff00;
   color: white;
   border: none;
   cursor: pointer;
@@ -296,15 +373,19 @@ dialog h2 {
 /* Results Section */
 .image-section {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
 }
-
-.image-wrapper {
+.data-section {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 20px;
 }
+
 
 .animal-image {
   width: 300px;
@@ -313,12 +394,6 @@ dialog h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#results-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  justify-content: center;
-}
 
 .result-card {
   background: white;
@@ -412,6 +487,43 @@ dialog h2 {
   border-radius: 4px;
 }
 
+/* loader */
+.loader {
+  position: absolute;
+  top: 50%; /* Coloca el loader al 50% de la altura */
+  left: 50%; /* Coloca el loader al 50% del ancho */
+  transform: translate(-50%, -50%); /* Ajusta para centrarlo perfectamente */
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #00ff00 transparent;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 @media only screen and (min-width: 54rem) {
 
@@ -463,12 +575,10 @@ dialog h2 {
         display: grid;
         grid-template-columns: 50% 50%;
         grid-gap: 20px;
-        animation-duration: 3s;
-        
+        place-items: stretch;
+        align-items: center;
       }
-
-
-    
+   
 .animalr-card {
   width: 500px;
   border: 1px solid #ddd;

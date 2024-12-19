@@ -5,6 +5,15 @@ const PAGE_SIZE = 10;
 let currentPage = 1;
 let animals = []; 
 
+const loader = document.getElementById("loader");
+
+function showLoader() {
+  loader.style.display = "inline-block";
+}
+
+function hideLoader() {
+  loader.style.display = "none";
+}
 // Fetch Animals
 async function fetchAnimals() {
   try {
@@ -192,9 +201,10 @@ function displayTopicDetails(animal) {
 
 
 async function init() {
+  showLoader();
   animals = await fetchAnimals();
   displayAnimals(animals, currentPage);
-
+  hideLoader();
 }
 
 init();
